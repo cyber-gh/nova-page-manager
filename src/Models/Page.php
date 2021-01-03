@@ -2,6 +2,8 @@
 
 namespace OptimistDigital\NovaPageManager\Models;
 
+use App\Nova\Actions\DuplicateDynamicPage;
+use Illuminate\Http\Request;
 use OptimistDigital\NovaPageManager\NovaPageManager;
 
 class Page extends TemplateModel
@@ -86,5 +88,12 @@ class Page extends TemplateModel
         if ($path[0] !== '/') $path = "/$path";
         if (strlen($path) > 1 && substr($path, -1) === '/') $path = substr($path, 0, -1);
         return preg_replace('/[\/]+/', '/', $path);
+    }
+
+    public function actions(Request $request)
+    {
+        return [
+            new DuplicateDynamicPage()
+        ];
     }
 }

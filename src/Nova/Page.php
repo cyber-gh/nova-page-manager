@@ -13,6 +13,7 @@ use OptimistDigital\NovaPageManager\Nova\Fields\ParentField;
 use OptimistDigital\NovaPageManager\Nova\Fields\PrefixField;
 use OptimistDigital\NovaPageManager\Nova\Fields\TemplateField;
 use OptimistDigital\NovaPageManager\NovaPageManager;
+use OptimistDigital\NovaPageManager\Nova\Actions\DuplicateDynamicPage;
 
 class Page extends TemplateResource
 {
@@ -157,5 +158,12 @@ class Page extends TemplateResource
         }
 
         return parent::applyOrderings($query, $orderings);
+    }
+
+    public function actions(Request $request)
+    {
+        return [
+            new DuplicateDynamicPage()
+        ];
     }
 }
